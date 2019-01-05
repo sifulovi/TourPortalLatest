@@ -9,7 +9,7 @@ class Tour {
     String description
     String image
 
-    int day
+    String day
     Date fromDate
     Date toDate
     User member
@@ -22,6 +22,7 @@ class Tour {
         member(nullable: true, blank: true)
         tourPackage(nullable: true)
         tourBooking(nullable: true)
+        day(nullable: true)
         description type: 'text'
         title(unique: true)
         fromDate(nullable: false)

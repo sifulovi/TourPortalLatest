@@ -19,11 +19,11 @@
     <UIHelper:renderErrorMessage fieldName="toDate" model="${tour}" errorMessage="Please Enter Valid Input "/>
 </div>
 
-<div class="form-group">
+%{--<div class="form-group">
     <label><g:message code="tour.day"/> *</label>
     <g:textField name="day" class="form-control" value="${tour?.day}" placeholder="Please Enter Days"/>
     <UIHelper:renderErrorMessage fieldName="day" model="${tour}" errorMessage="Please Enter Day"/>
-</div>
+</div>--}%
 
 <div class="number-panel">
     <g:include controller="tourPackage" action="tourPackages" id="${tour?.id}"/>

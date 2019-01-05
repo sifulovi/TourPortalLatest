@@ -9,13 +9,17 @@ class TourService {
     UserService userService
     TourPackageService tourPackageService
 
+
     def save(GrailsParameterMap params) {
         Tour tour = new Tour(params)
+
 
         tour.member = userService.getCurrentMember()
         def response = AppUtil.saveResponse(false, tour)
         if (tour.validate()) {
             if (params?.fromDate < params?.toDate && params?.fromDate > params?.lastDate) {
+                def totalDays = params?.toDate - params?.fromDate
+                tour.day = totalDays
                 response.isSuccess = true
                 tour.save(flush: true)
                 if (params.amount) {
@@ -31,6 +35,8 @@ class TourService {
         def response = AppUtil.saveResponse(false, tour)
         if (tour.validate()) {
             if (params?.fromDate < params?.toDate && params?.fromDate > params?.lastDate) {
+                def totalDays = params?.toDate - params?.fromDate
+                tour.day = totalDays
                 response.isSuccess = true
                 tour.save(flush: true)
                 if (params.amount) {

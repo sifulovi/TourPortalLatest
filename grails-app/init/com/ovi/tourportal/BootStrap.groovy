@@ -5,7 +5,7 @@ class BootStrap {
 
     def init = { servletContext ->
 
-        User admin = new User()
+    /*    User admin = new User()
         admin.firstName ="Admin"
         admin.lastName ="admin"
         admin.email="admin@gmail.com"
@@ -14,7 +14,7 @@ class BootStrap {
         admin.phoneNo="01677759373"
 
         admin.save(failOnError :true)
-
+*/
     }
 
     def destroy = {
