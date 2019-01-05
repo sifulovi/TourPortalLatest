@@ -13,14 +13,12 @@ class TourBookingService {
     }
 
     def memberBookedTourList() {
-        def tourBookingList = TourBooking.list()
-        def list = tourBookingList.groupBy { it?.user }
+        def list = TourBooking.list().groupBy { it?.user }
         return list
     }
 
     def tourWiseMemberList() {
-        def tourBookingList = TourBooking.list()
-        def list = tourBookingList.groupBy { it?.tour }
+        def list = TourBooking.list().groupBy { it?.tour }
         return list
     }
 
