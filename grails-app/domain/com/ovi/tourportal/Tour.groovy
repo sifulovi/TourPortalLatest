@@ -33,6 +33,7 @@ class Tour {
     static mapping = {
         version(false)
         tourPackage(cascade: 'all-delete-orphan')
+        member(cascade: 'all-delete-orphan')
     }
 
     @Override

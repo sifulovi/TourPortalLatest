@@ -12,9 +12,9 @@ class TourPackageService {
             new TourPackage(tour: tour, amount: amount, name: name).save(flush: true)
         } else {
             int index = 0
-            name.each {
+            amount.each {
                 if (it) {
-                    tour.addToTourPackage([amount: amount[index], name: it]).save(flush: true)
+                    tour.addToTourPackage([name: name[index], amount: it]).save(flush: true)
                     index++
                 }
             }
@@ -62,7 +62,6 @@ class TourPackageService {
         if (tourPackage) {
             tourPackage.name = packageName
             tourPackage.amount = Integer.valueOf(packageAmount)
-
             tourPackage.save(flush: true)
         }
     }

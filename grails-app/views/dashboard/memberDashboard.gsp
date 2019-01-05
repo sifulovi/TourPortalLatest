@@ -23,10 +23,7 @@
                                     </div>
 
                                     <div class="card-body ">
-                                        <h1 class="card-title pricing-card-title">‎$${info?.tourPackage?.sum {
-                                            it?.amount
-                                        }}<small
-                                                class="text-muted">/ ${info?.day}&nbsp;Days</small></h1>
+                                        <h1 class="card-title pricing-card-title">‎$${info?.tourPackage?.sum {it?.amount}}<small class="text-muted">/ ${info?.day}&nbsp;Days</small></h1>
                                         <ul class="list-unstyled mt-3 mb-4 topbar">
                                             <li><p><g:formatDate format="MMMM dd, yyyy"
                                                                  date="${info?.fromDate}"/></p>
@@ -46,6 +43,7 @@
 
                                         <g:link controller="tourBooking" action="create" id="${info.id}"
                                                 class="btn btn-sm btn-block btn-success ">Booking</g:link>
+
 
                                     </div>
                                 </div>

@@ -2,9 +2,6 @@ package com.ovi.tourportal
 
 import grails.web.servlet.mvc.GrailsParameterMap
 
-import java.sql.Timestamp
-import java.text.SimpleDateFormat
-
 
 class TourService {
 
@@ -33,7 +30,7 @@ class TourService {
             response.isSuccess = true
             tour.save(flush: true)
             if (params.amount) {
-                tourPackageService.updateTourPackages(tour, params.amount, params.name , params.packageId)
+                tourPackageService.updateTourPackages(tour, params.amount, params.name, params.packageId)
             }
         }
         return response
@@ -44,15 +41,15 @@ class TourService {
     }
 
 
-    def getListForMember(){
-        Date date= new Date()
-        def currentDate=AppUtil.getDateToTimestamp(date)
+    def getListForMember() {
+        Date date = new Date()
+        def currentDate = AppUtil.getDateToTimestamp(date)
         def MemberList = Tour.findAllByLastDateGreaterThanEquals(currentDate)
-        return  MemberList
+        return MemberList
     }
 
 
-    def list(){
+    def list() {
         return Tour.list()
     }
 
@@ -72,10 +69,16 @@ class TourService {
     }
 
     def delete(Tour tour) {
+
         def tourBooking = TourBooking.findAllByTour(tour)
-        if (tourBooking.tour.size() == 0) {
+        def user = tourBooking.user
+        def member=tourBooking.user
+        tourBooking.tour.clear()
+
+        tour.delete(flush: true)
+        /*if (tourBooking.tour.size() == 0) {
             tour.delete(flush: true)
             true
-        }
+        }*/
     }
 }
