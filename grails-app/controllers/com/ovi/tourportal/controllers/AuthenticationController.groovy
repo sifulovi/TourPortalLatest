@@ -1,5 +1,6 @@
 package com.ovi.tourportal.controllers
 
+import com.ovi.tourportal.AppUtil
 import com.ovi.tourportal.User
 import com.ovi.tourportal.UserService
 
@@ -73,6 +74,24 @@ class AuthenticationController {
     def logout() {
         session.invalidate()
         redirect(controller: "authentication", action: "login")
+    }
+
+
+    def deleteMember (Integer id){
+
+        def response = userService.get(id)
+        if (!response) {
+            flash.message = AppUtil.infoMessage(g.message(code: "invalid.entity"), false)
+            redirect(controller: "tour", action: "index")
+        } else {
+            response = userService.delete(response)
+            if (!response) {
+                flash.message = AppUtil.infoMessage(g.message(code: "member.delete"), false)
+            } else {
+                flash.message = AppUtil.infoMessage(g.message(code: "unable.to.delete"))
+            }
+            redirect(controller: "dashboard", action: "memberList")
+        }
     }
 
     def '403'(){}

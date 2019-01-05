@@ -11,13 +11,16 @@ class TourService {
 
     def save(GrailsParameterMap params) {
         Tour tour = new Tour(params)
+
         tour.member = userService.getCurrentMember()
         def response = AppUtil.saveResponse(false, tour)
         if (tour.validate()) {
-            response.isSuccess = true
-            tour.save(flush: true)
-            if (params.amount) {
-                tourPackageService.saveTourPackages(tour, params.amount, params.name)
+            if (params?.fromDate < params?.toDate && params?.fromDate > params?.lastDate) {
+                response.isSuccess = true
+                tour.save(flush: true)
+                if (params.amount) {
+                    tourPackageService.saveTourPackages(tour, params.amount, params.name)
+                }
             }
         }
         return response
@@ -27,10 +30,12 @@ class TourService {
         tour.properties = params
         def response = AppUtil.saveResponse(false, tour)
         if (tour.validate()) {
-            response.isSuccess = true
-            tour.save(flush: true)
-            if (params.amount) {
-                tourPackageService.updateTourPackages(tour, params.amount, params.name, params.packageId)
+            if (params?.fromDate < params?.toDate && params?.fromDate > params?.lastDate) {
+                response.isSuccess = true
+                tour.save(flush: true)
+                if (params.amount) {
+                    tourPackageService.updateTourPackages(tour, params.amount, params.name, params.packageId)
+                }
             }
         }
         return response
@@ -42,8 +47,7 @@ class TourService {
 
 
     def getListForMember() {
-        Date date = new Date()
-        def currentDate = AppUtil.getDateToTimestamp(date)
+        def currentDate = AppUtil.getDateToTimestamp()
         def MemberList = Tour.findAllByLastDateGreaterThanEquals(currentDate)
         return MemberList
     }
@@ -69,16 +73,12 @@ class TourService {
     }
 
     def delete(Tour tour) {
-
-        def tourBooking = TourBooking.findAllByTour(tour)
-        def user = tourBooking.user
-        def member=tourBooking.user
-        tourBooking.tour.clear()
-
         tour.delete(flush: true)
-        /*if (tourBooking.tour.size() == 0) {
-            tour.delete(flush: true)
-            true
-        }*/
+        true
+        /*  def tourBooking = TourBooking.findAllByTour(tour)
+          if (tourBooking.tour.size() == 0) {
+              tour.delete(flush: true)
+              true
+          }*/
     }
 }

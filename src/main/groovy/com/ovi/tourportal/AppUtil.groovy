@@ -9,8 +9,9 @@ class AppUtil {
 
 
 
-    static getDateToTimestamp(def date){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS")
+    static getDateToTimestamp(){
+        Date date = new Date()
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.S")
         def currentDate = dateFormat.format(date)
         Date parsedDate = dateFormat.parse(currentDate)
         Timestamp timestamp = new Timestamp(parsedDate.getTime())

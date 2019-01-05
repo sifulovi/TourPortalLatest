@@ -65,4 +65,5 @@ class DashboardController {
         def userBookingCount = tourBookingService.tourWiseMemberList()
         [list: userBookingCount, user: user]
     }
+
 }

@@ -15,13 +15,13 @@ class Tour {
     User member
     Date lastDate
 
-    static hasMany = [tourPackage: TourPackage]
-
+    static hasMany = [tourPackage: TourPackage,tourBooking:TourBooking]
 
     static constraints = {
         image(nullable: true, blank: true)
         member(nullable: true, blank: true)
         tourPackage(nullable: true)
+        tourBooking(nullable: true)
         description type: 'text'
         title(unique: true)
         fromDate(nullable: false)
@@ -33,7 +33,8 @@ class Tour {
     static mapping = {
         version(false)
         tourPackage(cascade: 'all-delete-orphan')
-        member(cascade: 'all-delete-orphan')
+        tourBooking(cascade: 'all-delete-orphan')
+
     }
 
     @Override

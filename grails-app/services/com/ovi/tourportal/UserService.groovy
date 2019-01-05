@@ -79,4 +79,14 @@ class UserService {
         return AppUtil.infoMessage("Password Changed")
     }
 
+    def get(Serializable id) {
+        return User.get(id)
+    }
+
+    def delete(User member){
+        member.delete(flush: true)
+
+    }
+
+
 }
