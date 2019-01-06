@@ -1,7 +1,6 @@
 package com.ovi.tourportal.controllers
 
 import com.ovi.tourportal.AppUtil
-import com.ovi.tourportal.User
 import com.ovi.tourportal.UserService
 
 
