@@ -52,6 +52,8 @@ dependencies {
     runtime 'mysql:mysql-connector-java:5.1.36'
     runtime "org.apache.tomcat:tomcat-jdbc"
     runtime "com.bertramlabs.plugins:asset-pipeline-grails:2.14.2"
+    runtime "com.h2database:h2"
+
 
     runtime 'mysql:mysql-connector-java:5.1.36'
     runtime 'org.xerial:sqlite-jdbc:3.21.0.1'
